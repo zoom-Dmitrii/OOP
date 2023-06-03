@@ -6,7 +6,7 @@
 Меня зовут <имя>. Мне <возраст> года(лет).".
  * 
  */
-package lesson1;
+package lesson1.task1;
 
 public class Cat {
     private String name;

@@ -6,7 +6,7 @@
  Мой владелец - <имя владельца>.".
  * 
  */
-package lesson1;
+package lesson1.task1;
 
 public class Owner {
     public String name;
