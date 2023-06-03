@@ -21,7 +21,6 @@ public class task3 {
         System.out.println();
 
         System.out.print("Поиск книги. Автор: ");
-        String txt = scanner.nextLine();
-        library.searchByAuthor(txt);
+        library.searchByAuthor(scanner.nextLine());
     }
 }
