@@ -6,6 +6,8 @@ public interface I_MarketBehaviour {
 
     void addInQueue(Сustomer cСustomer);
 
+    Сustomer getOneQueue();
+
     void delOutQueue();
 
 }

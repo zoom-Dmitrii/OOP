@@ -11,10 +11,12 @@ abstract class A_Deque {
         queue = new LinkedList<>();
     }
 
-    abstract String getQueue();
+    abstract String getAllQueue();
 
     abstract String getLast();
 
     abstract String getFirst();
+
+    abstract void setFirstExpense(Double x);
 
 }

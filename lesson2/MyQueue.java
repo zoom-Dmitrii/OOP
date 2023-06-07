@@ -22,6 +22,11 @@ public class MyQueue extends A_Deque implements I_QueueBehaviour {
     }
 
     @Override
+    public Сustomer getOneQueue() {
+        return queue.peekFirst();
+    }
+
+    @Override
     public void delOutQueue() {
         queue.removeFirst();
     }
@@ -53,7 +58,7 @@ public class MyQueue extends A_Deque implements I_QueueBehaviour {
     }
 
     @Override
-    public String getQueue() {
+    public String getAllQueue() {
         String allQueue = "";
         for (Сustomer сustomer : queue) {
             allQueue += сustomer + "; ";
@@ -64,6 +69,11 @@ public class MyQueue extends A_Deque implements I_QueueBehaviour {
     @Override
     String getFirst() {
         return queue.getFirst().getNameCustomer();
+    }
+
+    @Override
+    void setFirstExpense(Double x) {
+        queue.getFirst().setExpenses(x);
     }
 
 }
