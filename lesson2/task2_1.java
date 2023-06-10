@@ -1,7 +1,5 @@
 package lesson2;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -64,7 +62,7 @@ public class task2_1 {
             } else if (userInput.equals("5")) { // Ввели 5. Показать отчет по покупателям
                 System.out.printf("Совершенные покупки ");
                 Calculate func_1 = (m) -> {
-                    int count = 0;
+                    int count = 0;  // модет пригодиться в дальнейшем
                     Double x = 0.0;
                     for (Сustomer cСustomer : statistic.getLogsRecord()) {
                         count++;
