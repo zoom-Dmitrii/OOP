@@ -1,17 +1,17 @@
 package lesson4.task4_1;
 
-public class Element<MyData> {
-    MyData data;
+public class Element<MyData> extends ElementSuperClass {
 
-     Element (MyData o) {
-        data = o;
+    public Element(MyData o) {
+        super(o);
     }
 
-    public MyData getData() {
-        return data;
+    public Object getMyDataWork() {
+        return super.getData();
     }
 
-    void printElement(){
-        System.out.println("Тип: " + data.getClass().getName());
+    public void setMyDataWork(MyData o) {
+        super.setData(o);
     }
+
 }

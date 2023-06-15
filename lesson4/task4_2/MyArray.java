@@ -2,24 +2,18 @@ package lesson4.task4_2;
 
 import java.util.ArrayList;
 
-public class MyArray<T> {
-
-    ArrayList<T> myData;
+public class MyArray<T> extends SuperMyArray{
 
     public MyArray() {
-        myData = new ArrayList<>();
+        super();
     }
 
     public void addMyArray(T o) {
-        myData.add(o);
+        super.getMyData().add(o);
     }
 
-    public void printArray() {
-        System.out.println("Элементы массива:");
-        for (int i = 0; i < myData.size(); i++) {
-            System.out.printf(" %s", myData.get(i));
-        }
-
+    public ArrayList<T> getMyData() {
+        return super.getMyData();
     }
 
 }
