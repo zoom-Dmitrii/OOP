@@ -6,11 +6,13 @@ import java.util.Deque;
 public class PresenterCalculator {
     private ViewCalculator viewCalculator;
     private ModelCalcuator modelCalcuator;
+    private TestNumber testNumber;
     private static Deque<String> deque = new ArrayDeque<>(); // хранятся все введенные значения
 
-    public PresenterCalculator(ViewCalculator viewCalculator, ModelCalcuator modelCalcuator) {
+    public PresenterCalculator(ViewCalculator viewCalculator, ModelCalcuator modelCalcuator, TestNumber testNumber) {
         this.viewCalculator = viewCalculator;
         this.modelCalcuator = modelCalcuator;
+        this.testNumber = testNumber;
     }
 
     private static void addEl(String el) {
@@ -19,7 +21,7 @@ public class PresenterCalculator {
 
     public void performCalculation() {
         String number = " ";
-        while (!modelCalcuator.testNumber(number))
+        while (!testNumber.testNumber(number))
             number = viewCalculator.getInputData("Число: ");
 
         Boolean token = false; // ожидаем знак
@@ -31,7 +33,7 @@ public class PresenterCalculator {
                     }
                     token = false; // переключили, теперь ждем число
                     addEl(number); // записали знак
-                    while (!modelCalcuator.testNumber(number))
+                    while (!testNumber.testNumber(number))
                         number = viewCalculator.getInputData("число: ");
                 } else {
                     token = true; // переключили, теперь ждем знак
