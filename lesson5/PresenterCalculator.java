@@ -25,39 +25,41 @@ public class PresenterCalculator {
         String number = " ";
         Boolean numComplex; // ожидаем комплексное число
         Boolean token = false; // ожидаем знак
-        numComplex = viewCalculator.getTypeCalc();
-        if (!numComplex) {
-            number = testComplex.testNumber(this.viewCalculator);
-        } else {
-            number = testComplex.testComplex(this.viewCalculator);
-        }
-
+        //numComplex = viewCalculator.getTypeCalc();
+//        if (!numComplex) {
+//            number = testComplex.testNumber(this.viewCalculator);
+//        } else {
+//            number = testComplex.testComplex(this.viewCalculator);
+//        }
+        number = testComplex.testNumber(this.viewCalculator);
         while (!number.equals("st")) { // выполняем до команды st
             if (number.equals("mem")) {
                 viewCalculator.printMemory(memory.dequeMem);
-            }
-            if (!number.equals("<")) { // проверка на команду отмены
-                if (token) {
-                    number = testOperation.testOperation(viewCalculator);
-                    token = false; // переключили, теперь ждем число
-                    memory.addMem(number);
-                    memory.addEl(number); // записали знак
-                    number = testComplex.testNumber(this.viewCalculator);
-                } else {
-                    token = true; // переключили, теперь ждем знак
-                    memory.addMem(number);
-                    memory.addEl(number); // число на процедуры и в список
-                    if (memory.deque.size() > 1) { // вывод ответа после первой операции
-                        viewCalculator.printResult(memory.deque.peekLast());
-                    }
-                    //number = viewCalculator.getInputData("оператор: ");
-                }
+                number = testOperation.testOperation(viewCalculator);
             } else {
-                viewCalculator.delElement("Отмена: < Ответ: ", process(number));
-                token = true;
-
+                if (!number.equals("<")) { // проверка на команду отмены
+                    if (token) {
+                        token = false; // переключили, теперь ждем число
+                        memory.addMem(number);
+                        memory.addEl(number); // записали знак
+                        number = testComplex.testNumber(this.viewCalculator);
+                    } else {
+                        token = true; // переключили, теперь ждем знак
+                        memory.addMem(number);
+                        if (memory.deque.size() > 1) { // вывод ответа после первой операции
+                            memory.addEl(process(number));
+                            viewCalculator.printResult(memory.deque.peekLast());
+                        } else {
+                            memory.addEl(number); // число на процедуры и в список
+                        }
+                        number = testOperation.testOperation(viewCalculator);
+                    }
+                } else {
+                    viewCalculator.delElement("Отмена: < Ответ: ", process(number));
+                    token = true;
+                    number = viewCalculator.getInputData("оператор: ");
+                }
             }
-            number = viewCalculator.getInputData("оператор: ");
         }
     }
 
@@ -80,6 +82,8 @@ public class PresenterCalculator {
 //        if (el.contains("i")) {
 //            return modelCalcuator.calcComplex(memory.deque.pollLast(), memory.deque.peekLast(), el);
 //        }
+//        String tt = memory.deque.pollLast();
+//        String tr = (memory.deque.peekLast());
         return modelCalcuator.calc(memory.deque.pollLast(), Float.parseFloat(memory.deque.peekLast()), Float.parseFloat(el));
     }
 }
