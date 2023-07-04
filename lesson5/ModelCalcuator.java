@@ -21,6 +21,8 @@ public class ModelCalcuator implements Operation {
             res = calc(operator, Float.parseFloat((String) num1.get(1)), Float.parseFloat((String) num2.get(1)));
             if (Float.parseFloat(res)  >= 0) {
                 answer += "+" + res;
+            } else {
+                answer += res;
             }
             answer += "i";
             return answer;

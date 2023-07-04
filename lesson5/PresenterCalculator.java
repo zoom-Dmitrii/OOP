@@ -1,14 +1,12 @@
 package lesson5;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-
 public class PresenterCalculator {
     private ViewCalculator viewCalculator;
     private ModelCalcuator modelCalcuator;
     private TestOperation testOperation;
     private TestComplex testComplex;
     private Memory memory;
+    private Boolean numComplex; // ожидаем комплексное число
 
 
     public PresenterCalculator(ViewCalculator viewCalculator, ModelCalcuator modelCalcuator,
@@ -23,15 +21,9 @@ public class PresenterCalculator {
 
     public void performCalculation() {
         String number = " ";
-        Boolean numComplex; // ожидаем комплексное число
         Boolean token = false; // ожидаем знак
-        //numComplex = viewCalculator.getTypeCalc();
-//        if (!numComplex) {
-//            number = testComplex.testNumber(this.viewCalculator);
-//        } else {
-//            number = testComplex.testComplex(this.viewCalculator);
-//        }
-        number = testComplex.testNumber(this.viewCalculator);
+        numComplex = viewCalculator.getTypeCalc();
+        number = selectTestNum(numComplex);
         while (!number.equals("st")) { // выполняем до команды st
             if (number.equals("mem")) {
                 viewCalculator.printMemory(memory.dequeMem);
@@ -42,7 +34,7 @@ public class PresenterCalculator {
                         token = false; // переключили, теперь ждем число
                         memory.addMem(number);
                         memory.addEl(number); // записали знак
-                        number = testComplex.testNumber(this.viewCalculator);
+                        number = selectTestNum(numComplex);
                     } else {
                         token = true; // переключили, теперь ждем знак
                         memory.addMem(number);
@@ -63,6 +55,14 @@ public class PresenterCalculator {
         }
     }
 
+    private String selectTestNum(Boolean numComplex) {
+        if (!numComplex) {
+            return testComplex.testNumber(this.viewCalculator);
+        } else {
+            return testComplex.testComplex(this.viewCalculator);
+        }
+    }
+
     public String process(String el) { // Достаем значения из списка и отправляем в калькулятор
         try {
             if (memory.deque.size() == 0) { // Далее после первого элемента возвращаем результат операции
@@ -77,13 +77,12 @@ public class PresenterCalculator {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } // отправка данных для подсчета. Взяли и удалили знак операции, взяли последний
+        }
+        // отправка данных для подсчета. Взяли и удалили знак операции, взяли последний
         // результат и новое число
-//        if (el.contains("i")) {
-//            return modelCalcuator.calcComplex(memory.deque.pollLast(), memory.deque.peekLast(), el);
-//        }
-//        String tt = memory.deque.pollLast();
-//        String tr = (memory.deque.peekLast());
-        return modelCalcuator.calc(memory.deque.pollLast(), Float.parseFloat(memory.deque.peekLast()), Float.parseFloat(el));
+        if (numComplex) {
+            return modelCalcuator.calcComplex(memory.deque.pollLast(), memory.deque.peekLast(), el);
+        } else
+            return modelCalcuator.calc(memory.deque.pollLast(), Float.parseFloat(memory.deque.peekLast()), Float.parseFloat(el));
     }
 }
