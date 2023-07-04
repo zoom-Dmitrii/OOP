@@ -1,9 +1,5 @@
 package lesson5;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 public class task5_1 {
 
     public static void main(String[] args) {

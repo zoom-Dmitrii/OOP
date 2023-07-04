@@ -7,7 +7,7 @@ public class Memory {
     Deque<String> deque; // хранятся все опкрации
     Deque<String> dequeMem; // хранятся все введенные значения
 
-    public Memory(){
+    public Memory() {
         dequeMem = new ArrayDeque<>();
         deque = new ArrayDeque<>();
     }

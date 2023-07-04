@@ -19,7 +19,7 @@ public class ModelCalcuator implements Operation {
             res = calc(operator, Float.parseFloat((String) num1.get(0)), Float.parseFloat((String) num2.get(0)));
             answer = res;
             res = calc(operator, Float.parseFloat((String) num1.get(1)), Float.parseFloat((String) num2.get(1)));
-            if (Float.parseFloat(res)  >= 0) {
+            if (Float.parseFloat(res) >= 0) {
                 answer += "+" + res;
             } else {
                 answer += res;
@@ -42,7 +42,7 @@ public class ModelCalcuator implements Operation {
         switch (operator) {
             case "*": {
                 tmp = String.valueOf(difference(multiplication(a1, a2), multiplication(b1, b2)));
-                tmpComplex = String.valueOf((sum(multiplication(a1,b2), multiplication(b1, a2))));
+                tmpComplex = String.valueOf((sum(multiplication(a1, b2), multiplication(b1, a2))));
                 if (Float.parseFloat(tmpComplex) >= 0) {
                     tmp += "+";
                 }

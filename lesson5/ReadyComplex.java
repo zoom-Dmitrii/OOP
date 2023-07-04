@@ -1,13 +1,12 @@
 package lesson5;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ReadyComplex {
-    public ReadyComplex () {
+    public ReadyComplex() {
 
     }
+
     public ArrayList<String> parsNum(String num) {
         ArrayList parsOK = new ArrayList<>();
         String[] in1 = num.split("");
@@ -25,23 +24,23 @@ public class ReadyComplex {
             i++;
         }
         if (num1.contains("i")) {
-            tmp = num1.replace("i","");
+            tmp = num1.replace("i", "");
             if (tmp.equals("+") || tmp.equals("")) {
                 num1 = "+1";
-            }   else if (tmp.equals("-")){
+            } else if (tmp.equals("-")) {
                 num1 = "-1";
             }
             parsOK.add(num2);
-            parsOK.add(num1.replace("i",""));
+            parsOK.add(num1.replace("i", ""));
         } else {
-            tmp = num2.replace("i","");
+            tmp = num2.replace("i", "");
             if (tmp.equals("+") || tmp.equals("")) {
                 num2 = "+1";
             } else if (tmp.equals("-")) {
                 num2 = "-1";
             }
             parsOK.add(num1);
-            parsOK.add(num2.replace("i",""));
+            parsOK.add(num2.replace("i", ""));
         }
         return parsOK;
     }

@@ -10,7 +10,7 @@ public class TestComplex extends TestNumber {
             for (String i : test) {
                 if (i != "") {
                     if (!testNumber(i)) {
-                        complex ="";
+                        complex = "";
                     }
                 }
             }
